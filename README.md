@@ -17,6 +17,9 @@ Streamlit Dashboard
 
 http://localhost:8501
 
+<img width="1007" height="869" alt="image" src="https://github.com/user-attachments/assets/b24398c8-f409-4466-be49-fbff635fee56" />
+
+
 ---
 <img width="786" height="331" alt="image" src="https://github.com/user-attachments/assets/9c975af7-9cff-45ef-9177-fdc9f76e2676" />
 
@@ -204,4 +207,5 @@ Aspiring Data Scientist / Machine Learning Engineer
 ⭐ If you found this project useful
 
 Please consider giving the repository a star on GitHub!
+
 
