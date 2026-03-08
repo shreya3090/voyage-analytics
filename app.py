@@ -6,7 +6,7 @@ import pandas as pd
 app = FastAPI()
 
 # Load models
-joblib.load("flight_model.pkl")
+flight_model = joblib.load("flight_model.pkl")
 recommendation_model = joblib.load("recommendation_model.pkl")
 gender_model = joblib.load("gender_model.pkl")
 
