@@ -6,9 +6,9 @@ import pandas as pd
 app = FastAPI()
 
 # Load models
-flight_model = joblib.load("flight_model.pkl")
-recommendation_model = joblib.load("recommendation_model.pkl")
-gender_model = joblib.load("gender_model.pkl")
+flight_model = joblib.load("models/flight_model.pkl")
+recommendation_model = joblib.load("models/recommendation_model.pkl")
+gender_model = joblib.load("models/gender_model.pkl")
 
 
 class FlightRequest(BaseModel):
