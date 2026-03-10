@@ -1,0 +1,23 @@
+artifact_path: file:C:/Users/Shreya Sachan/OneDrive/Desktop/voyage-analytics/mlruns/1/models/m-a89d3a23964d427f8e1a6ff9ffa6a1ec/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.6
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.6.1
+    skops_trusted_types: null
+mlflow_version: 3.10.1
+model_id: m-a89d3a23964d427f8e1a6ff9ffa6a1ec
+model_size_bytes: 815908
+model_uuid: m-a89d3a23964d427f8e1a6ff9ffa6a1ec
+prompts: null
+run_id: a99812eac7714ef1ad4395b9c6362e7f
+utc_time_created: '2026-03-10 15:35:02.993558'
