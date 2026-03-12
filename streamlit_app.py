@@ -1,10 +1,9 @@
 import streamlit as st
-import pandas as pd
-import joblib
+import requests
 from geopy.distance import geodesic
 
-# Load model
-model = joblib.load("models/flight_model.pkl")
+# API endpoint
+api_url = "https://voyage-analytics-api-9yde.onrender.com/predict"
 
 # City coordinates
 city_coordinates = {
@@ -40,20 +39,27 @@ agency = st.selectbox(
 
 date = st.date_input("Travel Date")
 
+# Prediction
 if st.button("Predict Price"):
 
     distance = calculate_distance(from_city, to_city)
 
-    df = pd.DataFrame([{
-        "from": from_city,
-        "to": to_city,
-        "flightType": flight_type,
+    data = {
+        "from_city": from_city,
+        "to_city": to_city,
+        "flight_type": flight_type,
         "agency": agency,
         "distance": distance,
         "month": date.month
-    }])
+    }
 
-    prediction = model.predict(df)[0]
+    response = requests.post(api_url, json=data)
 
-    st.success(f"Predicted Flight Price: ${round(prediction,2)}")
-    st.write(f"Distance: {round(distance,2)} km")
+    if response.status_code == 200:
+        prediction = response.json()["prediction"]
+
+        st.success(f"Predicted Flight Price: ${round(prediction, 2)}")
+        st.write(f"Distance: {round(distance, 2)} km")
+
+    else:
+        st.error("API request failed. Please try again.")
