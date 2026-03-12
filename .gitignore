@@ -1,4 +1,18 @@
-mlflow.db
-*.pkl
+# Python
 __pycache__/
+*.pyc
+
+# MLflow
+mlruns/
+mlflow.db
+
+
+# Data
+data/
+
+# Environment
+.venv
 .env
+
+# OS
+.DS_Store
