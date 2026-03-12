@@ -6,7 +6,10 @@ The system provides an API for price prediction and an interactive dashboard for
 The project demonstrates how machine learning models can be deployed in a production-like environment using APIs, dashboards, and containerization.
 
 ---
+## Live API
 
+FastAPI Docs:
+https://voyage-analytics-api-9yde.onrender.com/docs
 ## 🚀 Live Demo
 
 API Documentation (Swagger UI)
