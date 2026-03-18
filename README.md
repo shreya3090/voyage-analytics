@@ -22,6 +22,10 @@ http://localhost:8501
 
 ---
 <img width="786" height="331" alt="image" src="https://github.com/user-attachments/assets/9c975af7-9cff-45ef-9177-fdc9f76e2676" />
+## Updated Version: 
+<img width="1889" height="968" alt="image" src="https://github.com/user-attachments/assets/117a36c4-729e-48a7-b433-7fe09ecd9936" />
+<img width="1900" height="784" alt="image" src="https://github.com/user-attachments/assets/649bf549-4734-427b-8d72-5d04e6a0911c" />
+
 
 ## 🧠 Problem Statement
 
