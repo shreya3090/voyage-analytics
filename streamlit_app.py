@@ -298,6 +298,7 @@ with tab5:
 # --------------------------------
 with tab6:
 
+    # 🌍 Destination Section
     st.subheader("🗺 Choose Your Dream Destination")
 
     destination = st.selectbox(
@@ -323,6 +324,7 @@ with tab6:
 
     st.divider()
 
+    # 🤖 AI Assistant
     st.header("🤖 AI Travel Assistant")
 
     if "messages" not in st.session_state:
@@ -331,13 +333,14 @@ with tab6:
     user_input = st.text_input("Ask something about travel")
 
     if user_input:
-
         st.session_state.messages.append({"role": "user", "content": user_input})
 
         if "beach" in user_input.lower():
             response = "🌴 Visit Miami!"
         elif "cheap" in user_input.lower():
             response = "💡 Book early for cheaper flights!"
+        elif "luxury" in user_input.lower():
+            response = "👑 Try New York luxury hotels!"
         else:
             response = "✈️ Try flight prediction tab!"
 
@@ -351,61 +354,71 @@ with tab6:
 
     st.divider()
 
-    st.header("🏨 Hotel Recommendation")
+    # 🏨 HOTEL SECTION
+    st.header("🏨 Hotel Recommendations")
 
-    city = st.selectbox(
-        "Select Destination",
-        list(city_coordinates.keys()),
-        key="hotel_city"
-    )
+    # Filters
+    col1, col2 = st.columns(2)
 
-    budget = st.selectbox(
-        "Budget Range",
-        ["Budget", "Mid Range", "Luxury"],
-        key="hotel_budget"
-    )
+    with col1:
+        city = st.selectbox(
+            "Select City",
+            ["Miami", "New York"],
+            key="hotel_city"
+        )
+
+    with col2:
+        budget = st.selectbox(
+            "Budget",
+            ["Budget", "Mid Range", "Luxury"],
+            key="hotel_budget"
+        )
+
+    # Hotel Data
     hotel_data = {
-    "New York": {
-        "Budget": ("Pod Hotel", "https://images.unsplash.com/photo-1566073771259-6a8506099945"),
-        "Mid Range": ("Hilton", "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa"),
-        "Luxury": ("The Plaza", "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb")
-    },
-    "Chicago": {
-        "Budget": ("Freehand", "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267"),
-        "Mid Range": ("Hyatt", "https://images.unsplash.com/photo-1551776235-dde6d4829808"),
-        "Luxury": ("Langham", "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2")
-    },
-    "Los Angeles": {
-        "Budget": ("Adler", "https://images.unsplash.com/photo-1505691938895-1758d7feb511"),
-        "Mid Range": ("Sheraton", "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b"),
-        "Luxury": ("Beverly Hills Hotel", "https://images.unsplash.com/photo-1590490360182-c33d57733427")
-    },
-    "San Francisco": {
-        "Budget": ("HI Hostel", "https://images.unsplash.com/photo-1521783988139-893ce6c91c47"),
-        "Mid Range": ("Zephyr", "https://images.unsplash.com/photo-1551918120-9739cb430c6d"),
-        "Luxury": ("Fairmont", "https://images.unsplash.com/photo-1576678927484-cc907957088c")
-    },
-    "Miami": {
-        "Budget": ("Generator", "https://images.unsplash.com/photo-1501117716987-c8e1ecb21055"),
-        "Mid Range": ("Loews", "https://images.unsplash.com/photo-1566073771259-6a8506099945"),
-        "Luxury": ("Setai", "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4")
+        "Miami": [
+            {"name": "The Setai", "price": 450, "rating": 5,
+             "img": "https://images.unsplash.com/photo-1566073771259-6a8506099945"},
+            {"name": "Loews Miami Beach", "price": 250, "rating": 4,
+             "img": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa"},
+        ],
+        "New York": [
+            {"name": "The Plaza", "price": 500, "rating": 5,
+             "img": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb"},
+            {"name": "Pod Times Square", "price": 120, "rating": 3,
+             "img": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267"},
+        ]
     }
-}
 
-if st.button("Find Hotel"):
+    # Budget Filter Logic
+    def filter_hotels(hotel):
+        if budget == "Budget":
+            return hotel["price"] <= 200
+        elif budget == "Mid Range":
+            return 200 < hotel["price"] <= 400
+        else:
+            return hotel["price"] > 400
 
-    hotel_name, hotel_img = hotel_data[city][budget]
+    filtered_hotels = [h for h in hotel_data[city] if filter_hotels(h)]
 
-    st.success(f"🏨 Recommended Hotel: {hotel_name}")
+    # Display Hotels
+    for i, hotel in enumerate(filtered_hotels):
 
-    st.image(
-        hotel_img,
-        caption=f"{hotel_name} - {budget} Stay",
-        width="stretch"
-    )
+        with st.container():
+            col1, col2 = st.columns([1, 2])
 
-    st.markdown("### ✨ Why this hotel?")
-    
+            with col1:
+                st.image(hotel["img"], width="stretch")
+
+            with col2:
+                st.subheader(hotel["name"])
+                st.write("⭐" * hotel["rating"])
+                st.write(f"💰 ${hotel['price']}/night")
+
+                if st.button(f"Book Now", key=f"book_{i}"):
+                    st.success(f"✅ {hotel['name']} booked!")
+
+    # Budget Info
     if budget == "Budget":
         st.info("💸 Affordable stay with essential amenities.")
     elif budget == "Mid Range":
