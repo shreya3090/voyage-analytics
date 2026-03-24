@@ -7,7 +7,7 @@ The project demonstrates how machine learning models can be deployed in a produc
 
 ---
 ##App
-"C:\Users\Shreya Sachan\Videos\Screen Recordings\Screen Recording 2026-03-19 213023.mp4"
+https://drive.google.com/file/d/1GtYM9lwZrZxIl7mgqvvzNce6xjaBvqgE/view?usp=sharing
 ## 🚀 Live Demo
 
 API Documentation (Swagger UI)
