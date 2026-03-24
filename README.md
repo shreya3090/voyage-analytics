@@ -6,7 +6,8 @@ The system provides an API for price prediction and an interactive dashboard for
 The project demonstrates how machine learning models can be deployed in a production-like environment using APIs, dashboards, and containerization.
 
 ---
-
+##App
+"C:\Users\Shreya Sachan\Videos\Screen Recordings\Screen Recording 2026-03-19 213023.mp4"
 ## 🚀 Live Demo
 
 API Documentation (Swagger UI)
